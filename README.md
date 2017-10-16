@@ -2,7 +2,7 @@
 Shop catalog. Written for training purposes only.
 
 # How to install 
-1. Go to shop_catalog dir: `cd shop_catalog` \
+1. Go to shop_catalog dir: `cd shop_catalog` 
 2. Recomended use venv or virtualenv for better isolation.\
    Venv setup example: \
    `$ python3 -m venv myenv`\

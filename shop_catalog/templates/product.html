@@ -1,0 +1,60 @@
+{% extends "_base.html" %}
+{% block content %}
+<main class="container">
+    <!-- Left Column / Product image -->
+    <div class="left-column">
+        <img src="{{ product.image.url }}" class="active" alt="{{ product.product_model }}">
+    </div>
+
+    <div class="right-column">
+
+        <!-- Product Description -->
+        <div class="product-description">
+            <span><a href="{% url 'index_page' %}">Назад к каталогу</a></span>
+            <h2>{{ product.product_model }}</h2>
+            <p>Процессор: {{ product.processor_model }}</p>
+            <p>Частота процессора: {{ product.processor_frequency }} МГц</p>
+            <p>Объем оперативной памяти: {{ product.ram_value }} Гб</p>
+            <p>Размер экрана: {{ product.display_size }} "</p>
+            <p>Видеокарта: {{ product.videocard }}</p>
+            <p>Вес: {{ product.weight }} кг</p>
+            <p>Оптический привод: {% if product.optical_drive %}Есть{% else %} Нет {% endif %}</p>
+            <p>4G LTE: {% if product.lte_4g %}Есть{% else %} Нет {% endif %}</p>
+            <p>Bluetooth: {% if product.bluetooth %}Есть{% else %} Нет {% endif %}</p>
+            <p>Wi-Fi: {% if product.wi_fi %}Есть {% else %} Нет {% endif %}</p>
+        </div>
+
+        <!-- Product Configuration -->
+        <div class="product-configuration">
+
+            <!-- Product Color -->
+            <div class="product-color">
+                <span>Цвет</span>
+                <div class="options-choose">
+                    {% for Color in product.colors.all %}
+                    <button style="background-color: {{ Color.product_color }};"></button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- HDD Capacity -->
+            <div class="options-config">
+                <span>Емкость HDD:</span>
+                <div class="options-choose">
+                    {% for Hdd in product.hdd_capacity.all %}
+                    <button>{{ Hdd.hdd_capacity }} Гб</button>
+                    {% endfor %}
+                </div>
+            </div>
+
+
+            {% load humanize %}
+            <div class="product-price">
+                <span>{{ product.price|intcomma }} &#8381;</span>
+                <a href="#" class="cart-btn">Добавить в корзину</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
